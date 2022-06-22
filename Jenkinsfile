@@ -5,10 +5,18 @@ pipeline {
             args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
         }
     }
+
+    environment {
+        SRC_GIT_REPO = 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+        DOCKER_FILE = 'https://github.com/Atercat/homework11/raw/dev/run/Dockerfile'
+        PROD_IMAGE = 'atercat/myboxfuse:hw11'
+        WAR_NAME = 'hello-1.0.war'
+    }
+
     stages {
         stage('Download source code') {
             steps {
-                git 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+                git '$SRC_GIT_REPO'
             }
         }
 
@@ -20,8 +28,8 @@ pipeline {
         
         stage('Create Docker image') {
             steps {
-                sh 'wget -P target https://github.com/Atercat/homework11/raw/dev/run/Dockerfile'
-                sh 'docker build --build-arg ARTIFACT=hello-1.0.war -t atercat/myboxfuse:hw11 target'
+                sh 'wget -P target $DOCKER_FILE'
+                sh 'docker build --build-arg ARTIFACT=$WAR_NAME -t $PROD_IMAGE target'
             }
         }
 
@@ -31,7 +39,7 @@ pipeline {
             }
             steps {
                 sh 'docker login -u $REPO_CREDS_USR -p $REPO_CREDS_PSW'
-                sh 'docker push atercat/myboxfuse:hw11'
+                sh 'docker push $PROD_IMAGE'
             }
         }
     }
