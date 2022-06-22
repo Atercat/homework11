@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'atercat/builder'
-            args '-d -t -v git:/git -v /var/run/docker.sock:/var/run/docker.sock'
+            args '-v git:/git -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
