@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd /git'
                 git 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
             }
         }
