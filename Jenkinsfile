@@ -1,13 +1,15 @@
 pipeline {
     agent {
         docker {
-            image 'docker'
+            image 'atercat/builder'
+            args '-v git:/git'
         }
     }
     stages {
-        stage('Biuld') {
+        stage('Build') {
             steps {
-                echo 'test'
+                sh 'cd /git'
+                git 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
             }
         }
     }
