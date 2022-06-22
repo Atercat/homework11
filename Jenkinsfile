@@ -20,8 +20,7 @@ pipeline {
         
         stage('Create Docker image') {
             steps {
-                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'run/Dockerfile', renameFiles: false, sourceCaptureExpression: '', targetLocation: '', targetNameExpression: '')])
-                sh 'docker build --build-arg ARTIFACT=target/hello.war -t atercat/myboxfuse .'
+                sh 'docker build --build-arg ARTIFACT=target/hello.war -t atercat/myboxfuse https://github.com/Atercat/homework11/raw/dev/run/Dockerfile'
             }
         }
     }
