@@ -20,7 +20,7 @@ pipeline {
         
         stage('Create Docker image') {
             steps {
-                sh 'docker build --build-arg ARTIFACT=target/hello-1.0.war -t atercat/myboxfuse https://github.com/Atercat/homework11/raw/dev/run/Dockerfile'
+                sh 'docker build --build-arg ARTIFACT=/var/lib/jenkins/workspace/homework11/target/hello-1.0.war -t atercat/myboxfuse https://github.com/Atercat/homework11/raw/dev/run/Dockerfile'
             }
         }
     }
