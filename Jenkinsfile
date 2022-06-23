@@ -16,9 +16,6 @@ pipeline {
     stages {
         stage('Download source code') {
             steps {
-                echo '$SRC_GIT_REPO'
-                echo "$SRC_GIT_REPO"
-                echo $SRC_GIT_REPO
                 git "$SRC_GIT_REPO"
             }
         }
