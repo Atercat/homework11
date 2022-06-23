@@ -35,7 +35,7 @@ pipeline {
         
         stage('Create Docker image') {
             steps {
-                sh 'docker build --build-arg ARTIFACT=$WAR_NAME -t $PROD_IMAGE mygit/run'
+                sh 'docker build --build-arg ARTIFACT=app/$WAR_NAME -t $PROD_IMAGE mygit/run'
             }
         }
 
