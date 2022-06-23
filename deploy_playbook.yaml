@@ -10,15 +10,6 @@
         - docker.io
         - python3-docker
         - python-is-python3
-      when: ansible_os_family == "Debian"
-
-    - name: Ensure Git and Docker are installed on RedHat
-      yum: name={{ item }} state=present update_cache=yes
-      with_items:
-        - git
-        - docker
-        - python-docker-py
-      when: ansible_os_family == "RedHat"
 
     - name: Ensure Docker service is running
       service: name=docker state=started
