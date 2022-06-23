@@ -9,6 +9,7 @@ pipeline {
     environment {
         SRC_GIT_REPO = 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
         DOCKER_FILE = 'https://github.com/Atercat/homework11/raw/dev/run/Dockerfile'
+        PLAYBOOK = 'https://github.com/Atercat/homework11/raw/dev/run/deploy_playbook.yaml'
         PROD_IMAGE = 'atercat/myboxfuse:hw11'
         WAR_NAME = 'hello-1.0.war'
     }
@@ -45,6 +46,7 @@ pipeline {
 
         stage('Deploy image') {
             steps {
+                sh 'wget -P target $PLAYBOOK'
                 ansiblePlaybook become: true,
                     credentialsId: 'run_node',
                     disableHostKeyChecking: true,
