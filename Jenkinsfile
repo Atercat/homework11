@@ -20,7 +20,8 @@ pipeline {
                     git "$SRC_GIT_REPO"
                 }
                 dir('mygit') {
-                    git "$BUILD_GIT_REPO"
+                    git url: "$BUILD_GIT_REPO",
+                        branch: 'dev'
                 }
             }
         }
