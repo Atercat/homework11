@@ -42,5 +42,17 @@ pipeline {
                 sh 'docker push $PROD_IMAGE'
             }
         }
+
+        stage('Deploy image') {
+            steps {
+                ansiblePlaybook become: true,
+                    credentialsId: 'run_node',
+                    disableHostKeyChecking: true,
+                    extras: '--extra-vars "app_image=$PROD_IMAGE"',
+                    inventory: 'inventory',
+                    limit: 'run',
+                    playbook: 'deploy_playbook.yaml'
+            }
+        }
     }
 }

@@ -1,0 +1,21 @@
+- name: Deploy image
+  hosts: run
+  become: yes
+  
+tasks:
+  - name: Remove old container
+    docker_container:
+      name: run
+      state: absent
+
+  - name: Remove old image
+    docker_image:
+      name: "{{ app_image }}"
+      state: absent
+      
+  - name: Run app container at production server
+    docker_container:
+      name: run
+      image: "{{ app_image }}"
+      ports: "8080:8080"
+      recreate: yes
