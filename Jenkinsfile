@@ -27,7 +27,9 @@ pipeline {
 
         stage('Build artifact') {
             steps {
-                sh 'mvn clean package'
+                dir('app') {
+                    sh 'mvn clean package'
+                }
             }
         }
         
