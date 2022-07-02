@@ -5,14 +5,7 @@ pipeline {
             args '-v /var/run/docker.sock:/var/run/docker.sock -u root'
         }
     }
-    /*
-    environment {
-        SRC_GIT_REPO = 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-        BUILD_GIT_REPO = 'https://github.com/Atercat/homework11.git'
-        PROD_IMAGE = 'atercat/myboxfuse:hw11'
-        WAR_NAME = 'hello-1.0.war'
-    }
-    */
+
     parameters {
         string(name: "SRC_GIT_REPO", defaultValue: "https://github.com/boxfuse/boxfuse-sample-java-war-hello.git", trim: true, description: "Application Git repository")
         string(name: "BUILD_GIT_REPO", defaultValue: "https://github.com/Atercat/homework11.git", trim: true, description: "Assembly files Git repository")
