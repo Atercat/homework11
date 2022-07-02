@@ -54,8 +54,7 @@ pipeline {
         stage('Deploy image') {
             steps {
                 dir('mygit') {
-                    ansiblePlaybook become: true,
-                        credentialsId: 'run_node',
+                    ansiblePlaybook credentialsId: 'run_node',
                         disableHostKeyChecking: true,
                         extras: '--extra-vars "app_image=$PROD_IMAGE"',
                         inventory: 'inventory',
